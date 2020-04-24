@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#D4253A" d="M0 0L51 51.005 51 29.5 21.146 0z"/>
+        <path fill="#54060F" d="M0 0L0 2 2.011 2z"/>
+        <path fill="#54060F" d="M49 49L49 51 51.011 51z" transform="scale(1 -1) rotate(90 100.005 0)"/>
+        <text fill="#FFF" font-family="PingFangTC-Regular, PingFang TC" font-size="8" transform="rotate(45 31 20.5)">
+            <tspan x="19" y="23">維護中</tspan>
+        </text>
+    </g>
+</svg>

@@ -1,26 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import * as RouterLink from './constants/router'
+import Navigator from './components/Navigator'
+import Home from './pages/Home'
+import Promo from './pages/Promo'
+import Support from './pages/Support'
+import Sponsor from './pages/Sponsor'
+import Member from './pages/Member'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navigator/>
+      <Route exact path={RouterLink.HOME_PAGE} component={Home}/>
+      <Route path={RouterLink.PROMO_PAGE} component={Promo}/>
+      <Route path={RouterLink.SUPPORT_PAGE} component={Support}/>
+      <Route path={RouterLink.SPONSOR_PAGE} component={Sponsor}/>
+      <Route path={RouterLink.MEMBER_PAGE} component={Member}/>
+    </Router>
   );
 }
 
-export default App;
+export default App

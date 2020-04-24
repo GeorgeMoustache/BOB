@@ -1,0 +1,5 @@
+export const HOME_PAGE = '/'
+export const PROMO_PAGE = '/promo'
+export const SUPPORT_PAGE = '/support'
+export const SPONSOR_PAGE = '/sponsor'
+export const MEMBER_PAGE = '/member'
