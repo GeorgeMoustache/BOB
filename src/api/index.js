@@ -6,6 +6,10 @@ const api = axios.create({
 })
 
 export const fetchApi = {
+  // 首頁跑馬燈
+  homeMarquee() {
+    return api.get(url.homeMarquee)
+  },
   // 首頁遊戲列表
   homeGameList() {
     return api.get(url.homeGameList)

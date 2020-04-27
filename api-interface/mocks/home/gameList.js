@@ -118,7 +118,17 @@ module.exports = ({ method, query, body }) => {
       subTitle: '电竞',
       enTitle: 'ELECTRONIC SPORTS',
       order: 3,
-      item: [],
+      item: [
+        {
+          id: 145,
+          name: '电竞',
+          title: '电竞',
+          order: 3,
+          count: 10,
+          wap: 'string, // wap 連結',
+          app: 'string, // app 下載連結',
+        },
+      ],
     },
     Cardgame: {
       title: '棋牌游戏',
