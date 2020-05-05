@@ -7,47 +7,38 @@
 
 module.exports = ({ method, query, body }) => {
   return {
-    events: [
-      {
-        id: 0,
-        advertiseImage: 'https://avatar.xaqlt.com/file1/23,ee08bfa8fae6',
-        advertiseImageLink: '#',
-        name: 'yy-jokei',
-        actTitle: '棋牌每日全额包赔，投注再加奖',
-        actIntro: '',
-        status: 0,
-        beginTime: '2020-04-08 00:00:00',
-        endTime: '2020-04-30 23:59:59',
-        validity: '',
-        remark: ''
-      },
-      {
-        id: 1,
-        advertiseImage: 'https://avatar.eosyg.com/file1/23,e82c2f1ebe2b',
-        advertiseImageLink: '',
-        name: '',
-        actTitle: '每日集卡赢彩金，免费红包抢开心',
-        actIntro: 'yy-jokei',
-        status: 1,
-        beginTime: '020-04-01 00:00:00',
-        endTime: '2020-04-30 23:59:59',
-        validity: '',
-        remark: ''
-      },
-      {
-        id: 2,
-        advertiseImage: 'https://avatar.xaqlt.com/file1/23,e0d7bc1d758d',
-        advertiseImageLink: '',
-        name: 'yy-jokei',
-        actTitle: '真人投注送彩金',
-        actIntro: '',
-        status: 2,
-        beginTime: '2020-03-23 00:00:00',
-        endTime: '2020-04-30 23:59:59',
-        validity: '',
-        remark: ''
-      }
-    ],
-    eventNumber: 3
+    code: 0,
+    message: "成功",
+    data: {
+      list: [
+        {
+          id: 0,
+          title: '棋牌每日全额包赔，投注再加奖',
+          imgUrl: 'https://avatar.xaqlt.com/file1/23,ee08bfa8fae6',
+          linkUrl: '#',
+          status: 0, // 0=未開始,1=進行中,2=已過期,3=已下架,4=不可申請
+          beginTime: '2020-04-08',
+          endTime: '2020-04-30',
+        },
+        {
+          id: 1,
+          title: '每日集卡赢彩金，免费红包抢开心',
+          imgUrl: 'https://avatar.xaqlt.com/file1/23,71866375fe95',
+          linkUrl: '#',
+          status: 0,
+          beginTime: '2020-04-08',
+          endTime: '2020-04-30',
+        },
+        {
+          id: 2,
+          title: '真人投注送彩金',
+          imgUrl: 'https://avatar.xaqlt.com/file1/23,e0d7bc1d758d',
+          linkUrl: '#',
+          status: 0,
+          beginTime: '2020-04-08',
+          endTime: '2020-04-30',
+        },
+      ]
+    }
   }
 };

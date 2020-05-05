@@ -22,7 +22,7 @@ const Sponsor = ()=> {
   const [list, setList] = useState([])
   useEffect(()=>{
     fetchApi.sponsor().then(data => {
-      const list = data.data.data
+      const list = data.data.data.list
       setList(list)
     })
   }, [])
@@ -32,8 +32,8 @@ const Sponsor = ()=> {
       {
         list.map((item)=> {
           return (
-            <div key={item.sort} className={classes.row}>
-              <img src={item.cover_img_day} alt={item.title} />
+            <div key={item.id} className={classes.row}>
+              <img src={item.imgUrl} alt={item.title} />
             </div>
           )
         })

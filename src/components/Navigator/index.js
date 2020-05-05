@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import * as RouterLink from '../../constants/router'
+import * as RouterLink from '../../router/routeLink'
 import { makeStyles } from '@material-ui/core/styles'
 //UI
 import Grid from '@material-ui/core/Grid'
@@ -93,7 +93,7 @@ const Navigator = () => {
   return (
     <Grid container justify='space-around' className={classes.container}>
       <Grid item>
-        <NavLink to={RouterLink.PROMO_PAGE} activeClassName='active' className={`${classes.links} ${classes.link1}`}>優惠</NavLink>
+        <NavLink to={RouterLink.PROMOTION_PAGE} activeClassName='active' className={`${classes.links} ${classes.link1}`}>優惠</NavLink>
       </Grid>
       <Grid item>
         <NavLink to={RouterLink.SUPPORT_PAGE} activeClassName='active' className={`${classes.links} ${classes.link2}`}>客服</NavLink>

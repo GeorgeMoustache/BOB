@@ -4,8 +4,12 @@
  * @url home/marquee
  */
 
-module.exports = ({ method, query, body }) => {
+module.exports = (req) => {
   return {
-    data: '为电竞而生，BOB倾情打造并自主开发的电竞APP现已正式上线，请您前往【PC端】-【手机APP】下载进行体验，BOB邀您“竞”无止境！'
+    code: 0,
+    message: "成功",
+    data: {
+      content: '为电竞而生，BOB倾情打造并自主开发的电竞APP现已正式上线，请您前往【PC端】-【手机APP】下载进行体验，BOB邀您“竞”无止境！'
+    }
   }
 }

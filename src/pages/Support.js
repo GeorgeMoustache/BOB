@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 //API
 import { fetchApi } from '../api'
 //action
-import { GET_PROBLEM_LIST } from '../constants/actionType'
+import { GET_PROBLEM_LIST } from '../action/actionType'
 //component
 import MainContainer from '../components/Layout/MainContainer'
 import TitleBar from '../components/TitleBar'

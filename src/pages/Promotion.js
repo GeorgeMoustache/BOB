@@ -54,7 +54,7 @@ const Promo = ()=> {
   const [list, setList] = useState([])
   useEffect(()=>{
     fetchApi.promotion().then(data => {
-      const list = data.data.events
+      const list = data.data.data.list
       setList(list)
     })
   },[])
@@ -68,7 +68,7 @@ const Promo = ()=> {
               <time className={classes.date}>{item.beginTime}至{item.endTime}</time>
               <span className={classes.more}>查看詳情</span>
               <div className={classes.label}>最新活動</div>
-              <img src={item.advertiseImage} alt={item.actTitle} />
+              <img src={item.imgUrl} alt={item.title} />
             </Grid>
           )
         })

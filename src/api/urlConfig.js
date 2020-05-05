@@ -1,6 +1,8 @@
-const serverRoot = 'http://localhost:8151/api'
+const serverRoot = 'http://192.168.2.31:8151/api'
 
 const url = {
+  login: `${serverRoot}/login`,
+  homeSlider: `${serverRoot}/home/slider`,
   homeMarquee: `${serverRoot}/home/marquee`,
   homeGameList: `${serverRoot}/home/gameList`,
   promotion: `${serverRoot}/promotion`,
