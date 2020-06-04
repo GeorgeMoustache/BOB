@@ -5,6 +5,7 @@ const url = {
   homeSlider: `${serverRoot}/home/slider`,
   homeMarquee: `${serverRoot}/home/marquee`,
   homeGameList: `${serverRoot}/home/gameList`,
+  homeGoGame: `${serverRoot}/home/goGame`,
   promotion: `${serverRoot}/promotion`,
   sponsor: `${serverRoot}/sponsor`,
   problem: `${serverRoot}/problem`

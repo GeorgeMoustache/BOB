@@ -5,12 +5,12 @@ import { Route, useLocation, Redirect } from 'react-router-dom'
 const Guard = (props) => {
   const { config } = props
   const location = useLocation()
-  const loginStatus = useSelector(state => state.loginStatus)
+  const username = useSelector(state => state.memberInfo.username)
   const [targetComponent, setTargetComponent] = useState({})
 
   const routeComponent = () => {
     //已登入
-    if (loginStatus) {
+    if (username) {
       return (
         <Route exact path={targetComponent.pathname} component={targetComponent.component} />
       )

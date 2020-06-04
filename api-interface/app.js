@@ -52,10 +52,17 @@ wss.on('connection', ws => {
     //連結時執行此 console 提示
     console.log('Client connected')
 
+    const redpack = {
+      type: 1,
+      money: 100,
+      msg: '恭喜發財'
+    }
+
     //固定送最新時間給 Client
     const sendNowTime = setInterval(()=>{
-      ws.send('WS訊息推送')
-    }, 3000)
+      
+      ws.send(JSON.stringify(redpack))
+    }, 5000)
 
     //當 WebSocket 的連線關閉時執行
     ws.on('close', () => {

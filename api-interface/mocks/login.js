@@ -9,7 +9,14 @@ module.exports = (req) => {
     code: 0,
     message: "成功",
     data: {
-      login: true
+      login: true,
+      token: 'shuYang',
+      memberInfo: {
+        username: 'George',
+        wallet: 100.52,
+        currentVip: 0,
+        nextVip: 1,
+      }
     }
   }
 }

@@ -23,6 +23,10 @@ export const fetchApi = {
   homeGameList() {
     return api.get(url.homeGameList)
   },
+  // 首頁前往第三方遊戲
+  homeGoGame() {
+    return api.get(url.homeGoGame)
+  },
   // 優惠活動
   promotion() {
     return api.get(url.promotion)

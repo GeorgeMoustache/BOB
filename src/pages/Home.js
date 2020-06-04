@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { USER_LOGIN, USER_LOGOUT } from '../action/actionType'
 import { makeStyles } from '@material-ui/core/styles'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import Marquee from 'react-simple-marquee'
 //component
 import AlertDialog from '../components/AlertDialog'
+import Loading from '../components/Loading'
+import ToastMsg from '../components/ToastMsg'
 //api
 import { fetchApi } from '../api'
+//action
+import { USER_LOGIN, USER_LOGOUT } from '../action/actionType'
 //assets
 import marqueeIcon from '../assets/images/home/bulletin.svg'
 import homeLoginIcon from '../assets/images/home/home_login_icon.png'
@@ -18,7 +23,7 @@ import quickLinkIcon2 from '../assets/images/home/withdraw.png'
 import quickLinkIcon4 from '../assets/images/home/vip.png'
 import gameTabRepeat from '../assets/images/home/game_category_repeat.png'
 import gameTabBg from '../assets/images/home/game_category_bg.png'
-import gameListBg from '../assets/images/home/card_sports_bob.png'
+import maintain from '../assets/images/home/maintain.svg'
 
 const useStyles = makeStyles((theme) => ({
   sliderWrap: {
@@ -39,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     width: '100%',
-    padding: '5px',
+    padding: '0 5px',
     background: 'rgba(0, 0, 0, .5)',
     borderRadius: '10px 10px 0 0',
     fontSize: '12px',
@@ -50,21 +55,13 @@ const useStyles = makeStyles((theme) => ({
       display: 'block',
       width: '52px',
       height: '19px',
+      marginRight: '5px',
       background: `url(${marqueeIcon})`,
       backgroundSize: '100% auto',
     },
-  },
-  marqueeContent: {
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    animation: '$marqueeAnimate 50s linear infinite ',
-  },
-  '@keyframes marqueeAnimate': {
-    from: {
-      textIndent: '27.5em',
-    },
-    to: {
-      textIndent: '-105em',
+    '& .text-elem': {
+      height: '30px',
+      lineHeight: '30px',
     },
   },
   loginWrap: {
@@ -88,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     '& img': {
       width: theme.typography.pxToRem(15),
       height: 'auto',
-      marginLeft: theme.typography.pxToRem(14),
+      marginLeft: theme.typography.pxToRem(5),
     },
   },
   userName: {
@@ -140,7 +137,6 @@ const useStyles = makeStyles((theme) => ({
       color: '#000',
       '& span': {
         display: 'block',
-        transition: 'all .3s',
       },
       '& .cht': {
         fontSize: '12px',
@@ -185,8 +181,8 @@ const useStyles = makeStyles((theme) => ({
   gameListRow: {
     position: 'relative',
     marginBottom: '10px',
-    paddingBottom: '28.5%',
-    background: `url(${gameListBg}) center top no-repeat`,
+    paddingBottom: '28.4%',
+    backgroundRepeat: 'no-repeat',
     backgroundSize: '100% auto',
     '&.active': {
       animation: '$gameListItemAnimate 1s',
@@ -217,41 +213,44 @@ const useStyles = makeStyles((theme) => ({
   },
   gameName: {
     position: 'absolute',
-    left: '50%',
-    top: '10%',
-    fontSize: '5vw',
+    left: '48%',
+    top: '15%',
+    fontSize: '18px',
     color: '#FFF',
-    pointerEvents: 'none'
+    pointerEvents: 'none',
   },
   gameTitle: {
     position: 'absolute',
-    left: '50%',
+    left: '48%',
     top: '40%',
-    fontSize: '3vw',
-    pointerEvents: 'none'
+    fontSize: '12px',
+    pointerEvents: 'none',
   },
   gameCount: {
     paddingRight: '5px',
-    fontSize: '5vw',
+    fontSize: '15px',
     color: '#FFF',
+  },
+  gameMaintain: {
+    position: 'absolute',
+    right: '-2px',
+    top: '-2px',
   },
 }))
 
 const Home = () => {
   const classes = useStyles()
+  const history = useHistory()
+  const memberInfo = useSelector((state) => state.memberInfo)
+  const dispatch = useDispatch()
   const [sliderList, setSliderList] = useState([])
   const [marqueeContent, setMarqueeContent] = useState('我是跑馬燈')
-  const isLogin = useSelector((state) => state.loginStatus)
-  const dispatch = useDispatch()
   const [loginStatus, setLoginStatus] = useState()
-  const [memberInfo, setMemberInfo] = useState({
-    username: '',
-    money: 0,
-  })
   const [activeTab, setActiveTab] = useState(0)
   const [gameList, setGameList] = useState([])
   const [domGroup, setDomGroup] = useState([])
   const [dialogEnabled, setDialogEnabled] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   //輪播元件
   const sliderComponent = () => {
@@ -280,7 +279,14 @@ const Home = () => {
   const marqueeComponent = () => {
     return (
       <div className={classes.marquee}>
-        <div className={classes.marqueeContent}>{marqueeContent}</div>
+        <Marquee
+          speed={1}
+          style={{
+            height: 30,
+          }}
+        >
+          {marqueeContent}
+        </Marquee>
       </div>
     )
   }
@@ -289,10 +295,9 @@ const Home = () => {
   const beforeLoginComponent = () => {
     return (
       <div className={classes.loginWrap}>
-        <span className={classes.loginMsg}>歡迎您，親愛的用戶</span>
+        <span className={classes.loginMsg}> 歡迎您， 親愛的用戶 </span>
         <button onClick={handleLogin} className={classes.loginButton}>
-          請先登入
-          <img src={homeLoginIcon} alt='arrow' />
+          請先登入 <img src={homeLoginIcon} alt='arrow' />
         </button>
       </div>
     )
@@ -303,11 +308,10 @@ const Home = () => {
     return (
       <div className={classes.loginWrap}>
         <div onClick={handleLogout} className={classes.userName}>
-          {memberInfo.username}
-          <img src={level} alt='level' />
+          {memberInfo.username} <img src={level} alt='level' />
         </div>
         <div>
-          中心錢包：¥<span className={classes.money}>{memberInfo.money.toFixed(2)}</span>
+          中心錢包：¥ <span className={classes.money}> {memberInfo.wallet.toFixed(2)} </span>
         </div>
       </div>
     )
@@ -346,8 +350,8 @@ const Home = () => {
                 className={`tabs ${activeTab === idx ? 'active' : ''}`}
                 key={idx}
               >
-                <span className='cht'>{activeTab === idx ? curItem.title : curItem.subTitle}</span>
-                <span className='eng'>{curItem.enTitle}</span>
+                <span className='cht'> {activeTab === idx ? curItem.title : curItem.subTitle} </span>
+                <span className='eng'> {curItem.enTitle} </span>
               </button>
             )
           } else {
@@ -369,12 +373,21 @@ const Home = () => {
               <div className={`${classes.gameList} classRow`} key={idx}>
                 {curItem.item.map((childItem, childIdx) => {
                   return (
-                    <div onClick={goGame} className={classes.gameListRow} key={childIdx}>
-                      <div className={classes.gameName}>{childItem.name}</div>
+                    <div
+                      onClick={(evt)=> goGame(childItem.maintain, evt)}
+                      style={{
+                        backgroundImage: `url(${childItem.imgUrl})`,
+                      }}
+                      key={childIdx}
+                      className={classes.gameListRow}
+                    >
+                      <div className={classes.gameName}> {childItem.name} </div>
                       <div className={classes.gameTitle}>
-                        <span className={classes.gameCount}>{childItem.count}</span>
-                        {childItem.title}
+                        <span className={classes.gameCount}> {childItem.count} </span> {childItem.title}
                       </div>
+                      {childItem.maintain ? (
+                        <img src={maintain} alt='遊戲維修中' className={classes.gameMaintain} />
+                      ) : null}
                     </div>
                   )
                 })}
@@ -390,15 +403,22 @@ const Home = () => {
 
   //登入事件
   const handleLogin = () => {
-    fetchApi.login().then((data) => {
-      dispatch({ type: USER_LOGIN })
+    fetchApi.login().then((res) => {
+      const { data } = res.data
+      localStorage.setItem('token', data.token)
+      localStorage.setItem('memberInfo', JSON.stringify(data.memberInfo))
+      dispatch({ type: USER_LOGIN, payload: data.memberInfo })
       setLoginStatus(true)
     })
   }
 
   //登出事件
   const handleLogout = () => {
-    dispatch({ type: USER_LOGOUT })
+    dispatch({
+      type: USER_LOGOUT,
+    })
+    localStorage.removeItem('token')
+    localStorage.removeItem('memberInfo')
     setLoginStatus(false)
   }
 
@@ -406,8 +426,7 @@ const Home = () => {
   const handleTabClick = (idx) => {
     const box = document.getElementById('box')
     box.scrollTo({
-      top: domGroup[idx].offsetTop,
-      left: 0,
+      top: domGroup[idx].offsetTop - 40,
       behavior: 'smooth',
     })
   }
@@ -421,7 +440,7 @@ const Home = () => {
     const domList = Array.from(domGroup)
 
     domList.forEach((item, idx) => {
-      if (boxTop >= item.offsetTop) {
+      if (boxTop >= item.offsetTop - 40) {
         if (boxTop + boxHeight === boxScrollHeight) {
           setActiveTab(domList.length - 1)
         } else {
@@ -432,24 +451,47 @@ const Home = () => {
   }
 
   //點擊遊戲彈窗
-  const goGame = (e) => {
-    gameAnimate(e)
-  }
-
-  //遊戲動畫事件
-  const gameAnimate = (e) => {
-    const target = e.target.classList
+  const goGame = (maintain, evt) => {
+    
+    //動畫
+    const target = evt.target.classList
     target.add('active')
     setTimeout(() => {
       target.remove('active')
     }, 1000)
+    
+    //判斷登入狀態處理
+    if (!loginStatus) {
+      setDialogEnabled(true)
+    } else {
+      if (maintain) {
+        dispatch({type: 'TOAST_MSG_SUCCESS', payload: {
+          enabled: true,
+          type: 'success',
+          msg: '遊戲維護中'
+        }})
+      } else {
+        setLoading(true)
+        
+        fetchApi.homeGoGame().then((data) => {
+          setLoading(false)
+          const { url } = data.data.data
+          window.open(url)
+        })
+      }
+    }
   }
 
   //彈窗確認事件
-  const handleConfirm = () => setDialogEnabled(false)
+  const handleConfirm = () => {
+    history.push('register')
+    setDialogEnabled(false)
+  }
 
   //彈窗取消事件
-  const handleCancel = () => setDialogEnabled(false)
+  const handleCancel = () => {
+    setDialogEnabled(false)
+  }
 
   useEffect(() => {
     //取得大圖輪播
@@ -460,12 +502,6 @@ const Home = () => {
     //取得跑馬燈內容
     fetchApi.homeMarquee().then((data) => {
       setMarqueeContent(data.data.data.content)
-    })
-
-    //會員資料
-    setMemberInfo({
-      username: 'George',
-      money: 100.03,
     })
 
     //取得遊戲列表
@@ -479,26 +515,33 @@ const Home = () => {
     setDomGroup(domGroup)
   }, [])
 
+  //判斷登入狀態
   useEffect(() => {
-    isLogin ? setLoginStatus(true) : setLoginStatus(false)
-  }, [isLogin])
+    const token = localStorage.getItem('token')
+    if (token) {
+      const memberInfo = JSON.parse(localStorage.getItem('memberInfo'))
+      dispatch({type: USER_LOGIN, payload: memberInfo})
+      setLoginStatus(true)
+    } else {
+      setLoginStatus(false)
+    }
+  }, [dispatch])
 
   return (
     <React.Fragment>
+      <Loading enabled={loading} />
+      <ToastMsg />
       <div className={classes.sliderWrap}>
-        {sliderComponent()}
-        {marqueeComponent()}
+        {sliderComponent()} {marqueeComponent()}
       </div>
-      {loginStatus ? loginComponent() : beforeLoginComponent()}
-      {quickLinksComponent()}
-      {gameTabComponent()}
+      {loginStatus ? loginComponent() : beforeLoginComponent()} {quickLinksComponent()} {gameTabComponent()}
       {gameListComponent()}
       <AlertDialog
         dialogOpen={dialogEnabled}
         title={'溫馨提醒'}
         content={'警告訊息彈窗測試'}
-        textYes={'確定'}
-        textNo={'取消'}
+        textYes={'註冊'}
+        textNo={'關閉'}
         onYes={handleConfirm}
         onNo={handleCancel}
       />
