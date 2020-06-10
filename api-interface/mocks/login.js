@@ -13,9 +13,12 @@ module.exports = (req) => {
       token: 'shuYang',
       memberInfo: {
         username: 'George',
+        avatar: '/static/images/member/avatar.png',
         wallet: 100.52,
         currentVip: 0,
         nextVip: 1,
+        needPromotion: 4000,
+        needRecharge: 1000
       }
     }
   }

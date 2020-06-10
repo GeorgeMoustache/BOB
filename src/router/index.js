@@ -1,37 +1,35 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { Route, useLocation, Redirect } from 'react-router-dom'
+import { Route, useHistory, useLocation, Redirect } from 'react-router-dom'
 
 const Guard = (props) => {
   const { config } = props
   const location = useLocation()
-  const username = useSelector(state => state.memberInfo.username)
+  const history = useHistory()
+  const token = localStorage.getItem('token')
   const [targetComponent, setTargetComponent] = useState({})
 
   const routeComponent = () => {
-    //已登入
-    if (username) {
+    if (token) {
       return (
         <Route exact path={targetComponent.pathname} component={targetComponent.component} />
-      )
-    }
-    
-    //未登入
-    if (targetComponent.auth) {
-      return (
-        <Redirect to='/404' />
       )
     } else {
-      return (
-        <Route exact path={targetComponent.pathname} component={targetComponent.component} />
-      )
+      if (targetComponent.auth) {
+        return (
+          <Redirect to='/' />
+        )
+      } else {
+        return (
+          <Route exact path={targetComponent.pathname} component={targetComponent.component} />
+        )
+      }
     }
   }
 
   useEffect(()=>{
     const curRoute = config.find(item => item.path === location.pathname)
-    setTargetComponent(curRoute)
-  }, [config, location])
+    curRoute ? setTargetComponent(curRoute) : history.push('/')
+  }, [history, config, location])
 
   
 

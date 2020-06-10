@@ -1,44 +1,45 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
 import * as RouterLink from '../../router/routeLink'
 import { makeStyles } from '@material-ui/core/styles'
-//UI
-import Grid from '@material-ui/core/Grid'
+import config from '../../router/config'
 //assets
-import navibg from '../../assets/icons/navigator/navibg.png'
-import icon1 from '../../assets/icons/navigator/onsales_3x.png'
-import icon2 from '../../assets/icons/navigator/customerService_3x.png'
-import icon3 from '../../assets/icons/navigator/home_3x.png'
-import icon4 from '../../assets/icons/navigator/sponsorUs_3x.png'
-import icon5 from '../../assets/icons/navigator/myProfile_3x.png'
-import icon1Active from '../../assets/icons/navigator/onsales_active_3x.png'
-import icon2Active from '../../assets/icons/navigator/customerService_active_3x.png'
-import icon4Active from '../../assets/icons/navigator/sponsorUs_active_3x.png'
-import icon5Active from '../../assets/icons/navigator/myProfile_active_3x.png'
+import navibg from '../../assets/images/navigator/navibg.png'
+import icon1 from '../../assets/images/navigator/onsales_3x.png'
+import icon2 from '../../assets/images/navigator/customerService_3x.png'
+import icon3 from '../../assets/images/navigator/home_3x.png'
+import icon4 from '../../assets/images/navigator/sponsorUs_3x.png'
+import icon5 from '../../assets/images/navigator/myProfile_3x.png'
+import icon1Active from '../../assets/images/navigator/onsales_active_3x.png'
+import icon2Active from '../../assets/images/navigator/customerService_active_3x.png'
+import icon4Active from '../../assets/images/navigator/sponsorUs_active_3x.png'
+import icon5Active from '../../assets/images/navigator/myProfile_active_3x.png'
 
 const useStyles = makeStyles(theme => ({
   container: {
     position: 'fixed',
     left: 0,
     bottom: 0,
+    display: 'flex',
+    justifyContent: 'space-around',
     width: '100%',
-    height: theme.typography.pxToRem(52),
-    paddingTop: '7px',
+    height: '52px',
+    paddingTop: '10px',
     background: `url(${navibg}) center top no-repeat`,
     backgroundSize: '100% auto',
     zIndex: 100
   },
   links: {
     display: 'block',
-    fontSize: theme.typography.pxToRem(8),
+    fontSize: '8px',
     color: '#9ca1aa',
     textDecoration: 'none',
     textAlign: 'center',
     '&::before': {
       content:'""',
       display: 'block',
-      width: theme.typography.pxToRem(24),
-      height: theme.typography.pxToRem(24),
+      width: '24px',
+      height: '24px',
       backgroundSize: '100% auto'
     },
     '&.active': {
@@ -81,8 +82,8 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     top: '-30px',
     '&::before': {
-      width: theme.typography.pxToRem(55),
-      height: theme.typography.pxToRem(55),
+      width: '55px',
+      height: '55px',
       backgroundImage: `url(${icon3})`
     }
   }
@@ -90,25 +91,37 @@ const useStyles = makeStyles(theme => ({
 
 const Navigator = () => {
   const classes = useStyles()
-  return (
-    <Grid container justify='space-around' className={classes.container}>
-      <Grid item>
-        <NavLink to={RouterLink.PROMOTION_PAGE} activeClassName='active' className={`${classes.links} ${classes.link1}`}>優惠</NavLink>
-      </Grid>
-      <Grid item>
-        <NavLink to={RouterLink.SUPPORT_PAGE} activeClassName='active' className={`${classes.links} ${classes.link2}`}>客服</NavLink>
-      </Grid>
-      <Grid item>
-        <NavLink exact to={RouterLink.HOME_PAGE} activeClassName='active' className={`${classes.links} ${classes.linkHome}`}>首頁</NavLink>
-      </Grid>
-      <Grid item>
-        <NavLink to={RouterLink.SPONSOR_PAGE} activeClassName='active' className={`${classes.links} ${classes.link3}`}>贊助</NavLink>
-      </Grid>
-      <Grid item>
-        <NavLink to={RouterLink.MEMBER_PAGE} activeClassName='active' className={`${classes.links} ${classes.link4}`}>我的</NavLink>
-      </Grid>
-    </Grid>
-  )
+  const location = useLocation()
+  const [targetComponent, setTargetComponent] = useState()
+
+  useEffect(() => {
+    const curRoute = config.find(item => item.path === location.pathname)
+    setTargetComponent(curRoute)
+  }, [targetComponent, location])
+
+  if (targetComponent && targetComponent.nav) {
+    return (
+      <ul className={classes.container}>
+        <li>
+          <NavLink to={RouterLink.PROMOTION_PAGE} activeClassName='active' className={`${classes.links} ${classes.link1}`}>優惠</NavLink>
+        </li>
+        <li>
+          <NavLink to={RouterLink.SUPPORT_PAGE} activeClassName='active' className={`${classes.links} ${classes.link2}`}>客服</NavLink>
+        </li>
+        <li>
+          <NavLink exact to={RouterLink.HOME_PAGE} activeClassName='active' className={`${classes.links} ${classes.linkHome}`}>首頁</NavLink>
+        </li>
+        <li>
+          <NavLink to={RouterLink.SPONSOR_PAGE} activeClassName='active' className={`${classes.links} ${classes.link3}`}>贊助</NavLink>
+        </li>
+        <li>
+          <NavLink to={RouterLink.MEMBER_PAGE} activeClassName='active' className={`${classes.links} ${classes.link4}`}>我的</NavLink>
+        </li>
+      </ul>
+    )
+  } else {
+    return null
+  }
 }
 
 export default Navigator

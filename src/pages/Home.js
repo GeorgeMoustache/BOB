@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import * as routes from '../router/routeLink'
 import { useSelector, useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import Slider from 'react-slick'
@@ -8,16 +9,14 @@ import 'slick-carousel/slick/slick-theme.css'
 import Marquee from 'react-simple-marquee'
 //component
 import AlertDialog from '../components/AlertDialog'
-import Loading from '../components/Loading'
-import ToastMsg from '../components/ToastMsg'
 //api
 import { fetchApi } from '../api'
 //action
-import { USER_LOGIN, USER_LOGOUT } from '../action/actionType'
+import { USER_LOGIN, LOADING, TOAST_MSG_OPEN } from '../action/actionType'
 //assets
 import marqueeIcon from '../assets/images/home/bulletin.svg'
 import homeLoginIcon from '../assets/images/home/home_login_icon.png'
-import level from '../assets/images/home/level.png'
+import level from '../assets/images/home/level-0.png'
 import quickLinkIcon1 from '../assets/images/home/deposit.png'
 import quickLinkIcon2 from '../assets/images/home/withdraw.png'
 import quickLinkIcon4 from '../assets/images/home/vip.png'
@@ -68,42 +67,42 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: `0 ${theme.typography.pxToRem(20)}`,
-    background: theme.palette.common.white,
-    borderBottom: `${theme.typography.pxToRem(1)} dashed #f1f1f1`,
-    fontSize: theme.typography.pxToRem(12),
-    color: theme.palette.common.black,
+    padding: '0 20px',
+    background: '#FFF',
+    borderBottom: '1px dashed #f1f1f1',
+    fontSize: '12px',
   },
   loginButton: {
     display: 'inline-flex',
     alignItems: 'center',
-    padding: `${theme.typography.pxToRem(10)} 0`,
+    padding: '10px 0',
     background: 'none',
     border: 'none',
-    color: theme.palette.common.black,
     textDecoration: 'none',
     '& img': {
-      width: theme.typography.pxToRem(15),
+      width: '15px',
       height: 'auto',
-      marginLeft: theme.typography.pxToRem(5),
+      marginLeft: '5px',
     },
   },
   userName: {
     display: 'flex',
     alignItems: 'center',
-    padding: `${theme.typography.pxToRem(15)} 0`,
+    padding: '15px 0',
     '& img': {
-      marginLeft: theme.typography.pxToRem(2),
+      maxWidth: '35px',
+      marginLeft: '2px',
     },
   },
   money: {
-    fontSize: theme.typography.pxToRem(20),
+    fontSize: '20px',
     color: theme.palette.primary.main,
   },
   quickLinks: {
     display: 'flex',
     justifyContent: 'space-between',
     padding: '10px 20px',
+    background: '#FFF',
     '& button': {
       display: 'inline-flex',
       alignItems: 'center',
@@ -250,7 +249,6 @@ const Home = () => {
   const [gameList, setGameList] = useState([])
   const [domGroup, setDomGroup] = useState([])
   const [dialogEnabled, setDialogEnabled] = useState(false)
-  const [loading, setLoading] = useState(false)
 
   //輪播元件
   const sliderComponent = () => {
@@ -296,9 +294,9 @@ const Home = () => {
     return (
       <div className={classes.loginWrap}>
         <span className={classes.loginMsg}> 歡迎您， 親愛的用戶 </span>
-        <button onClick={handleLogin} className={classes.loginButton}>
+        <Link to={routes.ENTRY_PAGE} className={classes.loginButton}>
           請先登入 <img src={homeLoginIcon} alt='arrow' />
-        </button>
+        </Link>
       </div>
     )
   }
@@ -307,7 +305,7 @@ const Home = () => {
   const loginComponent = () => {
     return (
       <div className={classes.loginWrap}>
-        <div onClick={handleLogout} className={classes.userName}>
+        <div className={classes.userName}>
           {memberInfo.username} <img src={level} alt='level' />
         </div>
         <div>
@@ -319,17 +317,21 @@ const Home = () => {
 
   //快捷按鈕
   const quickLinksComponent = () => {
+    const go = (path) => () => {
+      //判斷登入狀態處理
+      !loginStatus ? setDialogEnabled(true) : history.push(path)
+    }
     return (
       <div className={classes.quickLinks}>
-        <button>
+        <button onClick={go('/')}>
           <img src={quickLinkIcon1} alt='存款' />
           存款
         </button>
-        <button>
+        <button onClick={go('/')}>
           <img src={quickLinkIcon2} alt='取款' />
           取款
         </button>
-        <button>
+        <button onClick={go('/')}>
           <img src={quickLinkIcon4} alt='VIP詳情' />
           VIP詳情
         </button>
@@ -401,27 +403,6 @@ const Home = () => {
     )
   }
 
-  //登入事件
-  const handleLogin = () => {
-    fetchApi.login().then((res) => {
-      const { data } = res.data
-      localStorage.setItem('token', data.token)
-      localStorage.setItem('memberInfo', JSON.stringify(data.memberInfo))
-      dispatch({ type: USER_LOGIN, payload: data.memberInfo })
-      setLoginStatus(true)
-    })
-  }
-
-  //登出事件
-  const handleLogout = () => {
-    dispatch({
-      type: USER_LOGOUT,
-    })
-    localStorage.removeItem('token')
-    localStorage.removeItem('memberInfo')
-    setLoginStatus(false)
-  }
-
   //tab點擊事件
   const handleTabClick = (idx) => {
     const box = document.getElementById('box')
@@ -465,16 +446,11 @@ const Home = () => {
       setDialogEnabled(true)
     } else {
       if (maintain) {
-        dispatch({type: 'TOAST_MSG_SUCCESS', payload: {
-          enabled: true,
-          type: 'success',
-          msg: '遊戲維護中'
-        }})
+        dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'error', msg: '遊戲維護中' } })
       } else {
-        setLoading(true)
-        
+        dispatch({type: LOADING})
         fetchApi.homeGoGame().then((data) => {
-          setLoading(false)
+          dispatch({type: LOADING})
           const { url } = data.data.data
           window.open(url)
         })
@@ -484,7 +460,7 @@ const Home = () => {
 
   //彈窗確認事件
   const handleConfirm = () => {
-    history.push('register')
+    history.push({ pathname: '/entry', query: 1 })
     setDialogEnabled(false)
   }
 
@@ -529,8 +505,6 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      <Loading enabled={loading} />
-      <ToastMsg />
       <div className={classes.sliderWrap}>
         {sliderComponent()} {marqueeComponent()}
       </div>
@@ -539,7 +513,7 @@ const Home = () => {
       <AlertDialog
         dialogOpen={dialogEnabled}
         title={'溫馨提醒'}
-        content={'警告訊息彈窗測試'}
+        content={'請先登入會員'}
         textYes={'註冊'}
         textNo={'關閉'}
         onYes={handleConfirm}

@@ -11,6 +11,10 @@ export const fetchApi = {
   login() {
     return api.get(url.login)
   },
+  // 用戶登入
+  verify() {
+    return api.get(url.verify)
+  },
   // 首頁大圖輪播
   homeSlider() {
     return api.get(url.homeSlider)

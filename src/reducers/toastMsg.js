@@ -1,34 +1,26 @@
-import { TOAST_MSG_INFO, TOAST_MSG_SUCCESS, TOAST_MSG_WARNING, TOAST_MSG_ERROR } from '../action/actionType'
+import { TOAST_MSG_OPEN, TOAST_MSG_CLOSE } from '../action/actionType'
 
 const initState = {
-  enabled: true,
+  enabled: false,
   type: '',
   msg: ''
 }
 
 const toastMsg = (state = initState, action) => {
-  
-  console.log('reducerState', action.payload)
   switch (action.type) {
-    case TOAST_MSG_INFO:
-      state.enabled = action.enabled
-      state.msg = action.msg
-      return state
-    case TOAST_MSG_SUCCESS:
-      state.enabled = action.enabled
-      state.msg = action.msg
-      return state
-    case TOAST_MSG_WARNING:
-      state.enabled = action.enabled
-      state.msg = action.msg
-      return state
-    case TOAST_MSG_ERROR:
-      state.enabled = action.enabled
-      state.msg = action.msg
-      return state
+    case TOAST_MSG_OPEN:
+      return {
+        enabled: true,
+        type: action.payload.type,
+        msg: action.payload.msg
+      }
+    case TOAST_MSG_CLOSE:
+      return {
+        enabled: false,
+        type: 'info',
+        msg: ''
+      }
     default:
-      state.enabled = action.enabled
-      state.msg = action.msg
       return state
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core'
+import { useSelector } from 'react-redux'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 const useStyles = makeStyles((theme) => ({
@@ -28,9 +29,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const ToastMsg = (props) => {
+const ToastMsg = () => {
   const classes = useStyles()
-  const { enabled } = props
+  const enabled = useSelector(state => state.loading)
 
   return (
     <React.Fragment>
