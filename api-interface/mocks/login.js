@@ -17,6 +17,8 @@ module.exports = (req) => {
         wallet: 100.52,
         currentVip: 0,
         nextVip: 1,
+        promotion: 1000,
+        recharge: 0,
         needPromotion: 4000,
         needRecharge: 1000
       }

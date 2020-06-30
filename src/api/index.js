@@ -11,7 +11,7 @@ export const fetchApi = {
   login() {
     return api.get(url.login)
   },
-  // 用戶登入
+  // 取得驗證碼
   verify() {
     return api.get(url.verify)
   },
@@ -42,5 +42,33 @@ export const fetchApi = {
   // 贊助專題
   sponsor() {
     return api.get(url.sponsor)
-  }
+  },
+  // VIP詳情
+  vip() {
+    return api.get(url.vip)
+  },
+  // 支付列表
+  payList() {
+    return api.get(url.payList)
+  },
+  // 銀行列表
+  bankList() {
+    return api.get(url.bankList)
+  },
+  // 存款
+  deposit(params) {
+    return api.post(url.deposit, params)
+  },
+  // 錢包列表
+  moneyList() {
+    return api.get(url.moneyList)
+  },
+  // 我的銀行列表
+  myBankList() {
+    return api.get(url.myBankList)
+  },
+  // 取款
+  withdraw() {
+    return api.get(url.withdraw)
+  },
 }

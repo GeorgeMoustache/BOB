@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
+    <g fill="none" fill-rule="evenodd" transform="translate(.379)">
+        <rect width="19.769" height="21" fill="#9B9B9B" rx="4"/>
+        <text fill="#FFF" font-family="PingFangTC-Semibold, PingFang TC" font-size="14" font-weight="500">
+            <tspan x="3.766" y="16">＄</tspan>
+        </text>
+    </g>
+</svg>

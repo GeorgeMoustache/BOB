@@ -5,6 +5,11 @@ import Promotion from '../pages/Promotion'
 import Support from '../pages/Support'
 import Sponsor from '../pages/Sponsor'
 import Member from '../pages/Member'
+import Joinus from '../pages/Joinus'
+import JoinusForm from '../pages/JoinusForm'
+import Vip from '../pages/Vip'
+import Deposit from '../pages/Deposit'
+import Withdraw from '../pages/Withdraw'
 import NotFound from '../pages/404'
 
 export default [
@@ -43,6 +48,36 @@ export default [
     component: Member,
     auth: false,
     nav: true
+  },
+  {
+    path: routeLink.JOINUS_PAGE,
+    component: Joinus,
+    auth: false,
+    nav: true
+  },
+  {
+    path: routeLink.JOINUS_FORM_PAGE,
+    component: JoinusForm,
+    auth: false,
+    nav: true
+  },
+  {
+    path: routeLink.VIP_PAGE,
+    component: Vip,
+    auth: true,
+    nav: false
+  },
+  {
+    path: routeLink.DEPOSIT_PAGE,
+    component: Deposit,
+    auth: true,
+    nav: false
+  },
+  {
+    path: routeLink.WITHDRAW_PAGE,
+    component: Withdraw,
+    auth: true,
+    nav: false
   },
   {
     path: routeLink.NOT_FOUND_PAGE,

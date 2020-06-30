@@ -9,7 +9,14 @@ const url = {
   homeGoGame: `${serverRoot}/home/goGame`,
   promotion: `${serverRoot}/promotion`,
   sponsor: `${serverRoot}/sponsor`,
-  problem: `${serverRoot}/problem`
+  problem: `${serverRoot}/problem`,
+  vip: `${serverRoot}/vip`,
+  payList: `${serverRoot}/payList`,
+  bankList: `${serverRoot}/bankList`,
+  deposit: `${serverRoot}/deposit`,
+  moneyList: `${serverRoot}/moneyList`,
+  myBankList: `${serverRoot}/myBankList`,
+  withdraw: `${serverRoot}/withdraw`,
 }
 
 export default url

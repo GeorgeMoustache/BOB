@@ -62,7 +62,7 @@ wss.on('connection', ws => {
     const sendNowTime = setInterval(()=>{
       
       ws.send(JSON.stringify(redpack))
-    }, 5000)
+    }, 100000)
 
     //當 WebSocket 的連線關閉時執行
     ws.on('close', () => {
