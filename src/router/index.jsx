@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Route, useHistory, useLocation, Redirect } from 'react-router-dom'
+import * as routes from './routeLink'
 import { USER_LOGIN } from '../action/actionType'
 
 const Guard = (props) => {
@@ -20,7 +21,7 @@ const Guard = (props) => {
     } else {
       if (targetComponent.auth) {
         return (
-          <Redirect to='/entry' />
+          <Redirect to={routes.ENTRY_PAGE} />
         )
       } else {
         return (
@@ -32,14 +33,12 @@ const Guard = (props) => {
 
   useEffect(()=>{
     const curRoute = config.find(item => item.path === location.pathname)
-    curRoute ? setTargetComponent(curRoute) : history.push('/')
+    curRoute ? setTargetComponent(curRoute) : history.push(routes.HOME_PAGE)
     //如果 localStorage 有 memberInfo 就取入 redux
     if (memberInfo) {
       dispatch({type: USER_LOGIN, payload: memberInfo})
     }
   }, [history, config, location, dispatch, memberInfo])
-
-  
 
   return (
     <React.Fragment>

@@ -53,7 +53,7 @@ export default [
     path: routeLink.JOINUS_PAGE,
     component: Joinus,
     auth: false,
-    nav: true
+    nav: false
   },
   {
     path: routeLink.JOINUS_FORM_PAGE,
