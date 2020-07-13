@@ -17,6 +17,7 @@ const url = {
   moneyList: `${serverRoot}/moneyList`,
   myBankList: `${serverRoot}/myBankList`,
   withdraw: `${serverRoot}/withdraw`,
+  feedback: `${serverRoot}/feedback`,
 }
 
 export default url

@@ -106,8 +106,10 @@ const Picker = props => {
                   items.map((item, idx) => {
                     return (
                       <li onClick={handlePick(item, idx)} key={idx} className={ idx === selectIdx ? 'active' : ''}>
-                        <img src={item.icon} alt={item.bankName} />
-                        {item.bankName}
+                        {
+                          item.icon ? (<img src={item.icon} alt={item.bankName} />) : null
+                        }
+                        {item.bankName || item.text}
                       </li>
                     )
                   })

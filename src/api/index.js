@@ -71,4 +71,8 @@ export const fetchApi = {
   withdraw() {
     return api.get(url.withdraw)
   },
+  // 意見反饋
+  feedback(params) {
+    return api.post(url.feedback, params)
+  },
 }

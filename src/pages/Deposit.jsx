@@ -13,7 +13,7 @@ import bankDefaultIcon from '../assets/images/deposit/bank-default.svg'
 //api
 import { fetchApi } from '../api'
 //action
-import { TOAST_MSG_OPEN } from '../action/actionType'
+import { TOAST_MSG_OPEN } from '../actions/actionType'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -273,6 +273,7 @@ const Deposit = () => {
       if (res.data.code !== 0) return
       setBankList(res.data.data.bankList)
     })
+    //eslint-disable-next-line
   }, [])
 
   return (

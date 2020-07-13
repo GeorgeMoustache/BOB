@@ -408,7 +408,7 @@ const MemberPage = () => {
             </Button>
           </li>
           <li>
-            <Button onClick={go('/')}>
+            <Button onClick={go(routes.FEEDBACK_PAGE)}>
               <img alt='意见反馈' src={myFuncIcon03} />
               意见反馈
             </Button>
@@ -426,7 +426,7 @@ const MemberPage = () => {
             </Button>
           </li>
           <li>
-            <Button onClick={go('/')}>
+            <Button onClick={go(routes.ABOUTUS_PAGE)}>
               <img alt='关于我们' src={myFuncIcon06} />
               关于我们
             </Button>

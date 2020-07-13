@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import Snackbar from '@material-ui/core/Snackbar'
 import MuiAlert from '@material-ui/lab/Alert'
-import { TOAST_MSG_CLOSE } from '../../action/actionType'
+import { TOAST_MSG_CLOSE } from '../../actions/actionType'
 
 const Alert = props => {
   return <MuiAlert evevation={6} variant="filled" {...props} />

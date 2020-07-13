@@ -1,4 +1,4 @@
-import { GET_PROBLEM_LIST } from '../action/actionType'
+import { GET_PROBLEM_LIST } from '../actions/actionType'
 
 const getProblemList = (list = [], action) => {
   switch (action.type) {

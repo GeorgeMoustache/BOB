@@ -14,7 +14,7 @@ import verifyIcon from '../assets/images/entry/verify.png'
 //api
 import { fetchApi } from '../api'
 //action
-import { USER_LOGIN, TOAST_MSG_OPEN } from '../action/actionType'
+import { USER_LOGIN, TOAST_MSG_OPEN } from '../actions/actionType'
 
 const useStyles = makeStyles(theme => ({
   container: {

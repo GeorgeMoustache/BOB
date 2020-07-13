@@ -1,4 +1,4 @@
-import { USER_LOGIN, USER_LOGOUT } from '../action/actionType'
+import { USER_LOGIN, USER_LOGOUT } from '../actions/actionType'
 
 const initMemberInfo =  {
   username: 'George',

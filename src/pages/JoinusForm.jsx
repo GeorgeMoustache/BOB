@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid'
 import checkIcon from '../assets/images/joinus/check.svg'
 import checkIconActive from '../assets/images/joinus/check-active.svg'
 //action
-import { TOAST_MSG_OPEN } from '../action/actionType'
+import { TOAST_MSG_OPEN } from '../actions/actionType'
 
 const useStyles = makeStyles((theme) => ({
   joinusForm: {
@@ -136,6 +136,7 @@ const JoinusForm = () => {
     if (!info.realName) return dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'error', msg: '请输入真实姓名' } })
     if (!info.qq) return dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'error', msg: '请输入QQ号码' } })
     if (!info.email) return dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'error', msg: '请输入邮箱地址' } })
+    //eslint-disable-next-line
     const emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/
     if (!emailRule.test(info.email))
       return dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'error', msg: '邮箱地址格式不正确' } })

@@ -1,4 +1,4 @@
-import { TOAST_MSG_OPEN, TOAST_MSG_CLOSE } from '../action/actionType'
+import { TOAST_MSG_OPEN, TOAST_MSG_CLOSE } from '../actions/actionType'
 
 const initState = {
   enabled: false,

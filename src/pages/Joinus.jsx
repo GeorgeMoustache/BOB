@@ -28,7 +28,7 @@ import sec4img3 from '../assets/images/joinus/sec4-img3.png'
 //utils
 import copy from '../utils/copy'
 //action
-import { TOAST_MSG_OPEN } from '../action/actionType'
+import { TOAST_MSG_OPEN } from '../actions/actionType'
 
 const useStyles = makeStyles(theme => ({
   slider: {

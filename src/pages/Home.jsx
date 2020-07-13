@@ -12,7 +12,7 @@ import AlertDialog from '../components/AlertDialog'
 //api
 import { fetchApi } from '../api'
 //action
-import { USER_LOGIN, LOADING, TOAST_MSG_OPEN } from '../action/actionType'
+import { USER_LOGIN, LOADING, TOAST_MSG_OPEN } from '../actions/actionType'
 //assets
 import marqueeIcon from '../assets/images/home/bulletin.svg'
 import homeLoginIcon from '../assets/images/home/home_login_icon.png'
