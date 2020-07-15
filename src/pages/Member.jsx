@@ -23,8 +23,8 @@ import myFuncIcon03 from '../assets/images/member/myfunc-3.png'
 import myFuncIcon04 from '../assets/images/member/myfunc-4.png'
 import myFuncIcon05 from '../assets/images/member/myfunc-5.png'
 import myFuncIcon06 from '../assets/images/member/myfunc-6.png'
-import myFuncIcon07 from '../assets/images/member/myfunc-7.png'
-import myFuncIcon08 from '../assets/images/member/myfunc-8.png'
+// import myFuncIcon07 from '../assets/images/member/myfunc-7.png'
+// import myFuncIcon08 from '../assets/images/member/myfunc-8.png'
 import myFuncIcon09 from '../assets/images/member/myfunc-9.png'
 import myFuncIcon10 from '../assets/images/member/myfunc-10.png'
 
@@ -217,7 +217,7 @@ const useStyles = makeStyles(theme => ({
       display: 'block',
       width: '3px',
       height: '13px',
-      background: theme.palette.primary.main,
+      background: '#3e74fa',
       margin: 0,
       marginRight: '15px',
       border: 'none',
@@ -396,13 +396,13 @@ const MemberPage = () => {
         </div>
         <ul className={classes.linkGroup}>
           <li>
-            <Button onClick={go('/')}>
+            <Button onClick={go(routes.BET_RECORD_PAGE)}>
               <img alt='投注记录' src={myFuncIcon01} />
               投注记录
             </Button>
           </li>
           <li>
-            <Button onClick={go('/')}>
+            <Button onClick={go(routes.TRANSACTION_RECORD_PAGE)}>
               <img alt='交易纪录' src={myFuncIcon02} />
               交易纪录
             </Button>
@@ -431,20 +431,20 @@ const MemberPage = () => {
               关于我们
             </Button>
           </li>
-          <li>
+          {/* <li>
             <Button onClick={go('/')}>
               <img alt='收藏' src={myFuncIcon07} />
               收藏
             </Button>
-          </li>
-          <li>
+          </li> */}
+          {/* <li>
             <Button onClick={go('/')}>
               <img alt='分享APP' src={myFuncIcon08} />
               分享APP
             </Button>
-          </li>
+          </li> */}
           <li>
-            <Button onClick={go('/')}>
+            <Button onClick={go(routes.INVITE_PAGE)}>
               <img alt='邀请奖励' src={myFuncIcon10} />
               邀请奖励
             </Button>

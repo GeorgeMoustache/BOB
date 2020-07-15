@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid'
 import checkIcon from '../assets/images/joinus/check.svg'
 import checkIconActive from '../assets/images/joinus/check-active.svg'
 //action
-import { TOAST_MSG_OPEN } from '../actions/actionType'
+import toastMsg from '../actions/toastMsg'
 
 const useStyles = makeStyles((theme) => ({
   joinusForm: {
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
       top: theme.typography.pxToRem(5),
       width: theme.typography.pxToRem(98),
       padding: 0,
-      background: theme.palette.primary.main,
+      background: '#3e74fa',
       border: 'none',
       borderRadius: theme.typography.pxToRem(8),
       fontSize: theme.typography.pxToRem(14),
@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     marginBottom: theme.typography.pxToRem(16),
     fontSize: theme.typography.pxToRem(12),
-    color: theme.palette.primary.main,
+    color: '#3e74fa',
     '& img': {
       display: 'block',
       width: theme.typography.pxToRem(13),
@@ -133,20 +133,20 @@ const JoinusForm = () => {
 
   //提交申請
   const submit = () => {
-    if (!info.realName) return dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'error', msg: '请输入真实姓名' } })
-    if (!info.qq) return dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'error', msg: '请输入QQ号码' } })
-    if (!info.email) return dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'error', msg: '请输入邮箱地址' } })
+    if (!info.realName) return dispatch(toastMsg('error', '请输入真实姓名'))
+    if (!info.qq) return dispatch(toastMsg('error', '请输入QQ号码'))
+    if (!info.email) return dispatch(toastMsg('error', '请输入邮箱地址'))
     //eslint-disable-next-line
     const emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/
     if (!emailRule.test(info.email))
-      return dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'error', msg: '邮箱地址格式不正确' } })
-    if (!info.phone) return dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'error', msg: '请输入手机号码' } })
+      return dispatch(toastMsg('error', '邮箱地址格式不正确'))
+    if (!info.phone) return dispatch(toastMsg('error', '请输入手机号码'))
     if (!/^1[3456789]\d{9}$/.test(info.phone))
-      return dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'error', msg: '手机号码格式不正确' } })
-    if (!info.verify) return dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'error', msg: '请输入验证码' } })
+      return dispatch(toastMsg('error', '手机号码格式不正确'))
+    if (!info.verify) return dispatch(toastMsg('error', '请输入验证码'))
     if (!checkStatus)
-      return dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'error', msg: '您还未同意用户服务协议' } })
-    dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'success', msg: '成功送出' } })
+      return dispatch(toastMsg('error', '您还未同意用户服务协议'))
+    dispatch(toastMsg('success', '成功送出'))
   }
 
   return (

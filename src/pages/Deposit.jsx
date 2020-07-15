@@ -13,7 +13,7 @@ import bankDefaultIcon from '../assets/images/deposit/bank-default.svg'
 //api
 import { fetchApi } from '../api'
 //action
-import { TOAST_MSG_OPEN } from '../actions/actionType'
+import toastMsg from '../actions/toastMsg'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -249,12 +249,12 @@ const Deposit = () => {
   const submit = () => {
     console.log('params', params)
     const { bankCode, money } = params
-    if (bankCode === '') return dispatch({type: TOAST_MSG_OPEN, payload: { type: 'error', msg:'請選擇銀行' }})
-    if (money === '') return dispatch({type: TOAST_MSG_OPEN, payload: { type: 'error', msg:'請輸入金額' }})
-    if (Number(money) > 49999) return dispatch({type: TOAST_MSG_OPEN, payload: { type: 'error', msg:'金額超出上限' }})
+    if (bankCode === '') return dispatch(toastMsg('error', '請選擇銀行'))
+    if (money === '') return dispatch(toastMsg('error', '請輸入金額'))
+    if (Number(money) > 49999) return dispatch(toastMsg('error', '金額超出上限'))
     fetchApi.deposit(params).then(res => {
-      if (res.data.code !== 0) return dispatch({type: TOAST_MSG_OPEN, payload: { type: 'error', msg:'存款失敗' }})
-      dispatch({type: TOAST_MSG_OPEN, payload: { type: 'success', msg:'存款成功' }})
+      if (res.data.code !== 0) return dispatch(toastMsg('error', '存款失敗'))
+      dispatch(toastMsg('success', '存款成功'))
       history.push(routes.MEMBER_PAGE)
     })
   }

@@ -12,6 +12,9 @@ import Feedback from '../pages/Feedback'
 import Vip from '../pages/Vip'
 import Deposit from '../pages/Deposit'
 import Withdraw from '../pages/Withdraw'
+import BetRecord from '../pages/BetRecord'
+import TransactionRecord from '../pages/TransactionRecord'
+import Invite from '../pages/Invite'
 import NotFound from '../pages/404'
 
 export default [
@@ -90,6 +93,24 @@ export default [
   {
     path: routeLink.WITHDRAW_PAGE,
     component: Withdraw,
+    auth: true,
+    nav: false
+  },
+  {
+    path: routeLink.BET_RECORD_PAGE,
+    component: BetRecord,
+    auth: true,
+    nav: false
+  },
+  {
+    path: routeLink.TRANSACTION_RECORD_PAGE,
+    component: TransactionRecord,
+    auth: true,
+    nav: false
+  },
+  {
+    path: routeLink.INVITE_PAGE,
+    component: Invite,
     auth: true,
     nav: false
   },

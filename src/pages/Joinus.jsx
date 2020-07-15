@@ -28,18 +28,18 @@ import sec4img3 from '../assets/images/joinus/sec4-img3.png'
 //utils
 import copy from '../utils/copy'
 //action
-import { TOAST_MSG_OPEN } from '../actions/actionType'
+import toastMsg from '../actions/toastMsg'
 
 const useStyles = makeStyles(theme => ({
   slider: {
     position: 'relative',
-    paddingTop: theme.typography.pxToRem(44),
+    paddingTop: '44px',
     '& .slick-arrow': {
       position: 'absolute',
       top: 'auto',
-      bottom: theme.typography.pxToRem(380),
-      width: theme.typography.pxToRem(15),
-      height: theme.typography.pxToRem(40),
+      bottom: '380px',
+      width: '15px',
+      height: '40px',
       backgroundSize: '100% auto',
       transform: 'none',
       zIndex: 1,
@@ -47,11 +47,11 @@ const useStyles = makeStyles(theme => ({
         display: 'none'
       },
       '&.slick-prev': {
-        left: theme.typography.pxToRem(8),
+        left: '8px',
         backgroundImage: `url(${ButtonPrev})`
       },
       '&.slick-next': {
-        right: theme.typography.pxToRem(8),
+        right: '8px',
         backgroundImage: `url(${ButtonNext})`
       },
       '&.slick-disabled': {
@@ -64,14 +64,14 @@ const useStyles = makeStyles(theme => ({
     '& .slick-dots': {
       position: 'fixed',
       left: 0,
-      bottom: theme.typography.pxToRem(16),
+      bottom: '16px',
       '& li': {
-        width: theme.typography.pxToRem(8),
-        height: theme.typography.pxToRem(8),
-        border: `${theme.typography.pxToRem(1)} solid ${theme.palette.primary.main}`,
+        width: '8px',
+        height: '8px',
+        border: '1px solid #3e74fa',
         borderRadius: '50%',
         '&.slick-active': {
-          background: theme.palette.primary.main
+          background: '#3e74fa'
         },
         '& button': {
           display: 'none'
@@ -82,13 +82,13 @@ const useStyles = makeStyles(theme => ({
   section: {
     position: 'relative',
     width: '100%',
-    padding: `${theme.typography.pxToRem(38)} ${theme.typography.pxToRem(16)} 0 ${theme.typography.pxToRem(16)}`,
+    padding: `38px 16px 0 16px`,
     overflow: 'auto',
     '&:focus': {
       outline: 'none'
     },
     '& .main-title': {
-      marginBottom: theme.typography.pxToRem(8),
+      marginBottom: '8px',
       '& img': {
         display: 'block',
         width: '100%',
@@ -97,29 +97,29 @@ const useStyles = makeStyles(theme => ({
       }
     },
     '& .sub-title': {
-      fontSize: theme.typography.pxToRem(14),
+      fontSize: '14px',
       color: theme.palette.common.black,
       textAlign: 'center'
     }
   },
   sec1: {
-    height: theme.typography.pxToRem(window.innerHeight - 44),
+    height: `${window.innerHeight - 44}px`,
     background: `url(${sec1Bg}) center center no-repeat`,
     backgroundSize: '100% auto',
     '& .wrap': {
       position: 'absolute',
       left: 0,
-      bottom: theme.typography.pxToRem(65),
+      bottom: '65px',
       width: '100%',
-      padding: `0 ${theme.typography.pxToRem(16)}`,
+      padding: '0 16px',
       '& dl': {
         display: 'flex',
         alignItems: 'center',
-        marginBottom: theme.typography.pxToRem(15),
-        padding: `${theme.typography.pxToRem(12)} ${theme.typography.pxToRem(15)}`,
+        marginBottom: '15px',
+        padding: '12px 15px',
         background: 'rgba(255, 255, 255, 0.9)',
-        borderRadius: theme.typography.pxToRem(8),
-        boxShadow: `0 0 ${theme.typography.pxToRem(2)} 0 rgba(0, 0, 0, 0.08)`,
+        borderRadius: '8px',
+        boxShadow: '0 0 2px 0 rgba(0, 0, 0, 0.08)',
         '&:last-child': {
           marginBottom: 0
         },
@@ -127,9 +127,9 @@ const useStyles = makeStyles(theme => ({
           content: '""',
           flexShrink: 0,
           display: 'block',
-          width: theme.typography.pxToRem(35),
-          height: theme.typography.pxToRem(35),
-          marginRight: theme.typography.pxToRem(10),
+          width: '35px',
+          height: '35px',
+          marginRight: '10px',
           backgroundSize: '100% auto'
         },
         '&.qq::before': {
@@ -145,14 +145,14 @@ const useStyles = makeStyles(theme => ({
       '& dt': {
         flexGrow: 1,
         width: '50%',
-        color: theme.palette.common.black,
+        color: '#000',
         '& .title': {
           marginBottom: '5px',
-          fontSize: theme.typography.pxToRem(16)
+          fontSize: '16px'
         },
         '& .content': {
           margin: 0,
-          fontSize: theme.typography.pxToRem(20),
+          fontSize: '20px',
           fontWeight: 'bold',
           whiteSpace: 'nowrap',
           overflow: 'hidden',
@@ -161,17 +161,17 @@ const useStyles = makeStyles(theme => ({
       },
       '& dd': {
         flexShrink: 0,
-        width: theme.typography.pxToRem(66),
+        width: '66px',
         margin: 0,
         textAlign: 'right',
         '& .copy': {
-          width: theme.typography.pxToRem(60),
+          width: '60px',
           background: 'none',
-          border: `${theme.typography.pxToRem(1)} solid ${theme.palette.primary.main}`,
-          borderRadius: theme.typography.pxToRem(8),
-          fontSize: theme.typography.pxToRem(12),
-          color: theme.palette.primary.main,
-          lineHeight: theme.typography.pxToRem(30),
+          border: '1px solid #3e74fa',
+          borderRadius: '8px',
+          fontSize: '12px',
+          color: '#3e74fa',
+          lineHeight: '30px',
           '&:focus': {
             outline: 'none'
           }
@@ -180,39 +180,39 @@ const useStyles = makeStyles(theme => ({
     },
     '& .join-btn': {
       position: 'absolute',
-      left: theme.typography.pxToRem(16),
-      right: theme.typography.pxToRem(16),
-      bottom: theme.typography.pxToRem(60),
+      left: '16px',
+      right: '16px',
+      bottom: '60px',
       display: 'none',
-      width: `calc(100% - ${theme.typography.pxToRem(32)})`,
+      width: 'calc(100% - 32px)',
       background: 'linear-gradient(to right, #69b3f8, #4668d1)',
       border: 'none',
-      borderRadius: theme.typography.pxToRem(8),
-      fontSize: theme.typography.pxToRem(16),
-      color: theme.palette.common.white,
-      lineHeight: theme.typography.pxToRem(40),
+      borderRadius: '8px',
+      fontSize: '16px',
+      color: '#FFF',
+      lineHeight: '40px',
       textAlign: 'center',
       textDecoration: 'none'
     }
   },
   sec2: {
     '& .sub-title': {
-      marginBottom: theme.typography.pxToRem(62)
+      marginBottom: '62px'
     },
     '& img': {
       display: 'block',
       width: '100%',
-      maxWidth: theme.typography.pxToRem(317),
+      maxWidth: '317px',
       height: 'auto',
       margin: '0 auto'
     }
   },
   sec3: {
     '& .main-title img': {
-      maxWidth: theme.typography.pxToRem(302)
+      maxWidth: '302px'
     },
     '& .sub-title': {
-      marginBottom: theme.typography.pxToRem(17)
+      marginBottom: '17px'
     },
     '& img': {
       display: 'block',
@@ -220,20 +220,20 @@ const useStyles = makeStyles(theme => ({
       height: 'auto',
       margin: '0 auto',
       '&.img01': {
-        maxWidth: theme.typography.pxToRem(317),
-        marginBottom: theme.typography.pxToRem(50)
+        maxWidth: '317px',
+        marginBottom: '50px'
       },
       '&.img02': {
-        maxWidth: theme.typography.pxToRem(311),
+        maxWidth: '311px',
       }
     }
   },
   sec4: {
     '& .main-title img': {
-      maxWidth: theme.typography.pxToRem(183)
+      maxWidth: '183px'
     },
     '& .sub-title': {
-      marginBottom: theme.typography.pxToRem(16)
+      marginBottom: '16px'
     },
     '& img': {
       display: 'block',
@@ -241,15 +241,15 @@ const useStyles = makeStyles(theme => ({
       height: 'auto',
       margin: '0 auto',
       '&.img01': {
-        maxWidth: theme.typography.pxToRem(303),
-        marginBottom: theme.typography.pxToRem(22)
+        maxWidth: '303px',
+        marginBottom: '22px'
       },
       '&.img02': {
-        maxWidth: theme.typography.pxToRem(240),
-        marginBottom: theme.typography.pxToRem(52)
+        maxWidth: '240px',
+        marginBottom: '52px'
       },
       '&.img03': {
-        maxWidth: theme.typography.pxToRem(264)
+        maxWidth: '264px'
       },
     }
   }
@@ -263,10 +263,10 @@ const Joinus = () => {
   const handleCopy = (text) => () => {
     copy(text)
       .then(() => {
-        dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'success', msg: '复制成功' } })
+        dispatch(toastMsg('success', '复制成功'))
       })
       .catch(() => {
-        dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'error', msg: '复制失败' } })
+        dispatch(toastMsg('error', '复制失败'))
       })
   }
 

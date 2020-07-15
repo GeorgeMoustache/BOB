@@ -10,50 +10,50 @@ import Picker from '../components/Picker'
 //api
 import { fetchApi } from '../api'
 //action
-import { TOAST_MSG_OPEN } from '../actions/actionType'
+import toastMsg from '../actions/toastMsg'
 
 const useStyles = makeStyles(theme => ({
   container: {
-    padding: `${theme.typography.pxToRem(60)} ${theme.typography.pxToRem(16)} ${theme.typography.pxToRem(16)} ${theme.typography.pxToRem(16)}`,
+    padding: '60px 16px 16px 16px',
     '& .qa-select': {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      marginBottom: theme.typography.pxToRem(10),
-      padding: `${theme.typography.pxToRem(5)} ${theme.typography.pxToRem(10)}`,
+      marginBottom: '10px',
+      padding: '5px 10px',
       background: '#FFF'
     },
     '& .title': {
       display: 'block',
       width: '100%',
-      marginBottom: theme.typography.pxToRem(5),
-      padding: `${theme.typography.pxToRem(10)} ${theme.typography.pxToRem(14)}`,
+      marginBottom: '5px',
+      padding: '10px 14px',
     },
     '& .note': {
-      marginBottom: theme.typography.pxToRem(10),
-      fontSize: theme.typography.pxToRem(12),
+      marginBottom: '10px',
+      fontSize: '12px',
       color: '#23c6be',
       lineHeight: 1.5
     },
     '& .content': {
       display: 'block',
       width: '100%',
-      height: theme.typography.pxToRem(155),
-      marginBottom: theme.typography.pxToRem(25),
-      padding: `${theme.typography.pxToRem(10)} ${theme.typography.pxToRem(14)}`,
+      height: '155px',
+      marginBottom: '25px',
+      padding: '10px 14px',
       resize: 'none',
     },
     '& .submit': {
       display: 'block',
       width: '100%',
       background: 'linear-gradient(to right, #69b3f8, #4668d1)',
-      fontSize: theme.typography.pxToRem(16),
-      color: theme.palette.common.white,
-      lineHeight: theme.typography.pxToRem(40),
+      fontSize: '16px',
+      color: '#FFF',
+      lineHeight: '40px',
     },
     '& .qa-select, & .title, & .content': {
       fontFamily: 'arial, "微軟正黑體"',
-      fontSize: theme.typography.pxToRem(14),
+      fontSize: '14px',
       color: theme.palette.common.black,
     },
     '& .title:focus, & .content:focus, & .submit:focus': {
@@ -61,11 +61,11 @@ const useStyles = makeStyles(theme => ({
     },
     '& .qa-select, & .title, & .content, & .submit': {
       border: 'none',
-      borderRadius: theme.typography.pxToRem(8),
-      boxShadow: `0 0 ${theme.typography.pxToRem(2)} 0 rgba(0, 0, 0, 0.08)`,
+      borderRadius: '8px',
+      boxShadow: '0 0 2px 0 rgba(0, 0, 0, 0.08)',
     },
     '& .title::-webkit-input-placeholder, & .content::-webkit-input-placeholder': {
-      color: theme.palette.grey[50],
+      color: '#CCC',
     },
   },
 }))
@@ -107,13 +107,13 @@ const Feedback = props => {
 
   //提交反饋
   const submit = () => {
-    if (params.feedbackType === '') return dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'error', msg: '请选择类别' } })
-    if (params.title === '') return dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'error', msg: '请输入标题' } })
-    if (params.content === '') return dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'error', msg: '请输入内容，不能少于20个字' } })
-    if (params.content.length < 20) return dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'error', msg: '请输入内容，不能少于20个字' } })
+    if (params.feedbackType === '') return dispatch(toastMsg('error', '请选择类别'))
+    if (params.title === '') return dispatch(toastMsg('error', '请输入标题'))
+    if (params.content === '') return dispatch(toastMsg('error', '请输入内容，不能少于20个字'))
+    if (params.content.length < 20) return dispatch(toastMsg('error', '请输入内容，不能少于20个字'))
     fetchApi.feedback(params).then(res => {
-      if (res.data.code !== 0) return dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'error', msg: res.data.message } })
-      dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'success', msg: '上传成功' } })
+      if (res.data.code !== 0) return dispatch(toastMsg('error', res.data.message))
+      dispatch(toastMsg('success', '上传成功'))
       history.push('/member')
     })
   }

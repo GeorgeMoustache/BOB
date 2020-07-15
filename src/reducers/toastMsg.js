@@ -17,7 +17,7 @@ const toastMsg = (state = initState, action) => {
     case TOAST_MSG_CLOSE:
       return {
         enabled: false,
-        type: 'info',
+        type: action.payload.type,
         msg: ''
       }
     default:

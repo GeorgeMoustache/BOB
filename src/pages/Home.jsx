@@ -12,7 +12,8 @@ import AlertDialog from '../components/AlertDialog'
 //api
 import { fetchApi } from '../api'
 //action
-import { USER_LOGIN, LOADING, TOAST_MSG_OPEN } from '../actions/actionType'
+import { USER_LOGIN, LOADING } from '../actions/actionType'
+import toastMsg from '../actions/toastMsg'
 //assets
 import marqueeIcon from '../assets/images/home/bulletin.svg'
 import homeLoginIcon from '../assets/images/home/home_login_icon.png'
@@ -104,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
   },
   money: {
     fontSize: '20px',
-    color: theme.palette.primary.main,
+    color: '#3e74fa',
   },
   quickLinks: {
     display: 'flex',
@@ -455,7 +456,7 @@ const Home = () => {
       setDialogEnabled(true)
     } else {
       if (maintain) {
-        dispatch({ type: TOAST_MSG_OPEN, payload: { type: 'error', msg: '遊戲維護中' } })
+        dispatch(toastMsg('error', '遊戲維護中'))
       } else {
         dispatch({type: LOADING})
         fetchApi.homeGoGame().then((data) => {

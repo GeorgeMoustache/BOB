@@ -15,6 +15,7 @@
     "@material-ui/lab": "^4.0.0-alpha.55",
     "axios": "^0.19.2",
     "express": "^4.17.1",
+    "moment": "^2.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
@@ -24,6 +25,9 @@
     "react-simple-marquee": "^1.2.1",
     "react-slick": "^0.25.2",
     "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "rmc-date-picker": "^6.0.10",
+    "rmc-picker": "^5.0.10",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.1.0",
     "ws": "^7.2.3"

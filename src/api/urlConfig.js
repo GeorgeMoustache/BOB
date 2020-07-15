@@ -18,6 +18,9 @@ const url = {
   myBankList: `${serverRoot}/myBankList`,
   withdraw: `${serverRoot}/withdraw`,
   feedback: `${serverRoot}/feedback`,
+  betRecord: `${serverRoot}/betRecord`,
+  transactionRecord: `${serverRoot}/transactionRecord`,
+  invite: `${serverRoot}/invite`,
 }
 
 export default url

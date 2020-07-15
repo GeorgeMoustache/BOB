@@ -81,9 +81,7 @@ const Picker = props => {
   }
 
   //關閉 Picker
-  const handleClose = () => {
-    setEnabled(false)
-  }
+  const handleClose = () => setEnabled(false)
 
   //選擇項目
   const handlePick = (item, idx) => ()=> {

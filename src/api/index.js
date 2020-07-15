@@ -71,8 +71,20 @@ export const fetchApi = {
   withdraw() {
     return api.get(url.withdraw)
   },
+  // 投注記錄
+  betRecord(params) {
+    return api.post(url.betRecord, params)
+  },
+  // 交易記錄
+  transactionRecord(params) {
+    return api.post(url.transactionRecord, params)
+  },
   // 意見反饋
   feedback(params) {
     return api.post(url.feedback, params)
+  },
+  // 獲取邀請碼
+  invite() {
+    return api.get(url.invite)
   },
 }

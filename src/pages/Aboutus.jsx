@@ -14,22 +14,23 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     '& img': {
       display: 'block',
-      maxWidth: theme.typography.pxToRem(301),
+      maxWidth: '301px',
       height: 'auto',
       margin: '0 auto'
     },
     '& h2': {
-      margin: `${theme.typography.pxToRem(47)} 0 ${theme.typography.pxToRem(5)} 0`,
-      fontSize: theme.typography.pxToRem(16),
+      margin: '47px 0 5px 0',
+      fontSize: '16px',
     },
     '& p': {
-      margin: `0 0 ${theme.typography.pxToRem(40)} 0`,
+      margin: '0 0 40px 0',
     }
   }
 }))
 
 const Aboutus = () => {
   const classes = useStyles()
+
   return (
     <React.Fragment>
       <TitleBar>关于我们</TitleBar>

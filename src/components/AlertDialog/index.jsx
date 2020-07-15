@@ -48,10 +48,10 @@ const useStyles = makeStyles((theme) => ({
 
 const AlertDialog = (props) => {
   const classes = useStyles()
-  const { title, content, textYes, textNo, onYes, onNo } = props
+  const { dialogOpen, title, content, textYes, textNo, onYes, onNo } = props
 
   return (
-    <Dialog open={props.dialogOpen}>
+    <Dialog open={dialogOpen}>
       <div className={classes.dialogWrap}>
         <div className={classes.dialogTitle}>{title}</div>
         {props.children ? (

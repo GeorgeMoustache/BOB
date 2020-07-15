@@ -13,7 +13,7 @@ const ToastMsg = props => {
   const dispatch = useDispatch()
 
   const handleClose = () => {
-    dispatch({type: TOAST_MSG_CLOSE})
+    dispatch({type: TOAST_MSG_CLOSE, payload: {type: toast.type}})
   }
 
   return (
