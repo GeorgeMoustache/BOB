@@ -21,6 +21,8 @@ const url = {
   betRecord: `${serverRoot}/betRecord`,
   transactionRecord: `${serverRoot}/transactionRecord`,
   invite: `${serverRoot}/invite`,
+  bankCardList: `${serverRoot}/bankCardList`,
+  addBankcard: `${serverRoot}/addBankcard`
 }
 
 export default url

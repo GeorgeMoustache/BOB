@@ -21,8 +21,8 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos'
 
 const useStyles = makeStyles((theme) => ({
   subTitle: {
-    fontSize: theme.typography.pxToRem(20),
-    lineHeight: theme.typography.pxToRem(40),
+    fontSize: '20px',
+    lineHeight: '40px',
   },
   refresh: {
     color: '#0a91fb',

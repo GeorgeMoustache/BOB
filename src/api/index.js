@@ -87,4 +87,12 @@ export const fetchApi = {
   invite() {
     return api.get(url.invite)
   },
+  // 銀行卡列表
+  bankCardList() {
+    return api.get(url.bankCardList)
+  },
+  // 銀行卡列表
+  addBankcard(params) {
+    return api.post(url.addBankcard, params)
+  },
 }

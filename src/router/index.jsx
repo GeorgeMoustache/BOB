@@ -21,7 +21,7 @@ const Guard = (props) => {
     } else {
       if (targetComponent.auth) {
         return (
-          <Redirect to={routes.ENTRY_PAGE} />
+          <Redirect to={routes.ENTRY} />
         )
       } else {
         return (
@@ -33,7 +33,7 @@ const Guard = (props) => {
 
   useEffect(()=>{
     const curRoute = config.find(item => item.path === location.pathname)
-    curRoute ? setTargetComponent(curRoute) : history.push(routes.HOME_PAGE)
+    curRoute ? setTargetComponent(curRoute) : history.push(routes.HOME)
     //如果 localStorage 有 memberInfo 就取入 redux
     if (memberInfo) {
       dispatch({type: USER_LOGIN, payload: memberInfo})

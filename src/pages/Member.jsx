@@ -73,7 +73,7 @@ const useStyles = makeStyles(theme => ({
     width: '64px',
     height: '64px',
     marginRight: '10px',
-    border: `2px solid ${theme.palette.primary.contrastText}`,
+    border: '2px solid #FFF',
     borderRadius: '50%',
     overflow: 'hidden',
     '& img': {
@@ -119,7 +119,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   colorWhite: {
-    color: theme.palette.primary.contrastText,
+    color: '#FFF',
   },
   regButton: {
     position: 'absolute',
@@ -158,7 +158,7 @@ const useStyles = makeStyles(theme => ({
   walletWrapper: {
     marginBottom: '10px',
     padding: '20px 0',
-    background: theme.palette.primary.contrastText,
+    background: '#FFF',
     borderRadius: '13px',
   },
   walletMoney: {
@@ -179,7 +179,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     padding: '0 10px',
     fontSize: '14px',
-    color: theme.palette.common.black,
+    color: '#000',
     '& a': {
       display: 'inline-flex',
       alignItems: 'center'
@@ -203,7 +203,7 @@ const useStyles = makeStyles(theme => ({
   },
   linkWrapper: {
     marginBottom: '10px',
-    background: theme.palette.primary.contrastText,
+    background: '#FFF',
     borderRadius: '8px',
     boxShadow: '0 0 4px 0 rgba(0, 0, 0, 0.08)',
   },
@@ -251,7 +251,7 @@ const useStyles = makeStyles(theme => ({
     display: 'block',
     width: '100%',
     padding: '6px',
-    background: theme.palette.primary.contrastText,
+    background: '#FFF',
     fontSize: '16px',
     textAlign: 'center'
   }
@@ -280,7 +280,7 @@ const MemberPage = () => {
   //未登入個人資訊元件
   const beforeAvatar = () => {
     return (
-      <Link to={{pathname: routes.ENTRY_PAGE, query: 0}} className={classes.avatarWrapper}>
+      <Link to={{pathname: routes.ENTRY, query: 0}} className={classes.avatarWrapper}>
         <div className={classes.avatarPhoto}>
           <img alt='头像' src={memberInfo.avatar} />
         </div>
@@ -335,7 +335,7 @@ const MemberPage = () => {
   //註冊按鈕
   const regButton = () => {
     return (
-      <Link to={{pathname: routes.ENTRY_PAGE, query: 1}} className={classes.regButton} >
+      <Link to={{pathname: routes.ENTRY, query: 1}} className={classes.regButton} >
         <span className={classes.regTitle}>
           前往注册
         </span>
@@ -359,15 +359,15 @@ const MemberPage = () => {
           )}
         </div>
         <div className={classes.walletLinks}>
-          <Button onClick={go(routes.DEPOSIT_PAGE)}>
+          <Button onClick={go(routes.DEPOSIT)}>
             <img alt='存款icon' src={walletWithdraw} />
             存款
           </Button>
-          <Button onClick={go(routes.WITHDRAW_PAGE)}>
+          <Button onClick={go(routes.WITHDRAW)}>
             <img alt='取款icon' src={walletDeposit} />
             取款
           </Button>
-          <Button onClick={go(routes.VIP_PAGE)}>
+          <Button onClick={go(routes.VIP)}>
             <img alt='VIP详情icon' src={walletVip} />
             VIP详情
           </Button>
@@ -396,19 +396,19 @@ const MemberPage = () => {
         </div>
         <ul className={classes.linkGroup}>
           <li>
-            <Button onClick={go(routes.BET_RECORD_PAGE)}>
+            <Button onClick={go(routes.BET_RECORD)}>
               <img alt='投注记录' src={myFuncIcon01} />
               投注记录
             </Button>
           </li>
           <li>
-            <Button onClick={go(routes.TRANSACTION_RECORD_PAGE)}>
+            <Button onClick={go(routes.TRANSACTION_RECORD)}>
               <img alt='交易纪录' src={myFuncIcon02} />
               交易纪录
             </Button>
           </li>
           <li>
-            <Button onClick={go(routes.FEEDBACK_PAGE)}>
+            <Button onClick={go(routes.FEEDBACK)}>
               <img alt='意见反馈' src={myFuncIcon03} />
               意见反馈
             </Button>
@@ -420,13 +420,13 @@ const MemberPage = () => {
             </Button>
           </li>
           <li>
-            <Button onClick={go(routes.JOINUS_PAGE)}>
+            <Button onClick={go(routes.JOINUS)}>
               <img alt='加入我们' src={myFuncIcon05} />
               加入我们
             </Button>
           </li>
           <li>
-            <Button onClick={go(routes.ABOUTUS_PAGE)}>
+            <Button onClick={go(routes.ABOUTUS)}>
               <img alt='关于我们' src={myFuncIcon06} />
               关于我们
             </Button>
@@ -444,13 +444,13 @@ const MemberPage = () => {
             </Button>
           </li> */}
           <li>
-            <Button onClick={go(routes.INVITE_PAGE)}>
+            <Button onClick={go(routes.INVITE)}>
               <img alt='邀请奖励' src={myFuncIcon10} />
               邀请奖励
             </Button>
           </li>
           <li>
-            <Button onClick={go('/')}>
+            <Button onClick={go(routes.SETTING)}>
               <img alt='设置' src={myFuncIcon09} />
               设置
             </Button>
@@ -466,7 +466,7 @@ const MemberPage = () => {
     const logout = () => {
       localStorage.removeItem('token')
       localStorage.removeItem('memberInfo')
-      history.push(routes.ENTRY_PAGE)
+      history.push(routes.ENTRY)
     }
 
     return (
@@ -478,7 +478,6 @@ const MemberPage = () => {
 
   //連結導向
   const go = (path)=> ()=> {
-    console.log(path)
     isLogin ? history.push(path) : setDialogEnabled(true)
   }
 

@@ -71,7 +71,7 @@ const Invite = props => {
       const recommendCode = res.data.data.recommendCode
       const host = window.location.hostname
       const port = window.location.port
-      const urlValue = `https://${host}:${port}/#${routes.ENTRY_PAGE}?recommendCode=${recommendCode}`
+      const urlValue = `https://${host}:${port}/#${routes.ENTRY}?recommendCode=${recommendCode}`
       setUrl(urlValue)
     }).catch(err => {
       if (process.env.NODE_ENV === 'development') console.error(err)

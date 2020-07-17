@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
     '& .qa-select, & .title, & .content': {
       fontFamily: 'arial, "微軟正黑體"',
       fontSize: '14px',
-      color: theme.palette.common.black,
+      color: '#000',
     },
     '& .title:focus, & .content:focus, & .submit:focus': {
       outline: 'none',

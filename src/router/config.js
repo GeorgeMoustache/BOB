@@ -1,5 +1,6 @@
 import * as routeLink from './routeLink'
-import Home from '../pages/Home'
+import Home from '../pages/Home/'
+import Announcement from '../pages/Announcement'
 import Entry from '../pages/Entry'
 import Promotion from '../pages/Promotion'
 import Support from '../pages/Support'
@@ -15,107 +16,134 @@ import Withdraw from '../pages/Withdraw'
 import BetRecord from '../pages/BetRecord'
 import TransactionRecord from '../pages/TransactionRecord'
 import Invite from '../pages/Invite'
+import Setting from '../pages/Setting'
+import BankcardList from '../pages/BankcardList'
+import AddBankcard from '../pages/AddBankcard'
 import NotFound from '../pages/404'
 
 export default [
   {
-    path: routeLink.HOME_PAGE,
+    path: routeLink.HOME,
     component: Home,
     auth: false,
     nav: true
   },
   {
-    path: routeLink.ENTRY_PAGE,
+    path: routeLink.ANNOUNCEMENT,
+    component: Announcement,
+    auth: false,
+    nav: false
+  },
+  {
+    path: routeLink.ENTRY,
     component: Entry,
     auth: false,
     nav: false
   },
   {
-    path: routeLink.PROMOTION_PAGE,
+    path: routeLink.PROMOTION,
     component: Promotion,
     auth: false,
     nav: true
   },
   {
-    path: routeLink.SUPPORT_PAGE,
+    path: routeLink.SUPPORT,
     component: Support,
     auth: false,
     nav: true
   },
   {
-    path: routeLink.SPONSOR_PAGE,
+    path: routeLink.SPONSOR,
     component: Sponsor,
     auth: false,
     nav: true
   },
   {
-    path: routeLink.MEMBER_PAGE,
+    path: routeLink.MEMBER,
     component: Member,
     auth: false,
     nav: true
   },
   {
-    path: routeLink.ABOUTUS_PAGE,
+    path: routeLink.ABOUTUS,
     component: Aboutus,
     auth: false,
     nav: false
   },
   {
-    path: routeLink.JOINUS_PAGE,
+    path: routeLink.JOINUS,
     component: Joinus,
     auth: false,
     nav: false
   },
   {
-    path: routeLink.JOINUS_FORM_PAGE,
+    path: routeLink.JOINUS_FORM,
     component: JoinusForm,
     auth: false,
     nav: true
   },
   {
-    path: routeLink.FEEDBACK_PAGE,
+    path: routeLink.FEEDBACK,
     component: Feedback,
     auth: false,
     nav: true
   },
   {
-    path: routeLink.VIP_PAGE,
+    path: routeLink.VIP,
     component: Vip,
     auth: true,
     nav: false
   },
   {
-    path: routeLink.DEPOSIT_PAGE,
+    path: routeLink.DEPOSIT,
     component: Deposit,
     auth: true,
     nav: false
   },
   {
-    path: routeLink.WITHDRAW_PAGE,
+    path: routeLink.WITHDRAW,
     component: Withdraw,
     auth: true,
     nav: false
   },
   {
-    path: routeLink.BET_RECORD_PAGE,
+    path: routeLink.BET_RECORD,
     component: BetRecord,
     auth: true,
     nav: false
   },
   {
-    path: routeLink.TRANSACTION_RECORD_PAGE,
+    path: routeLink.TRANSACTION_RECORD,
     component: TransactionRecord,
     auth: true,
     nav: false
   },
   {
-    path: routeLink.INVITE_PAGE,
+    path: routeLink.INVITE,
     component: Invite,
     auth: true,
     nav: false
   },
   {
-    path: routeLink.NOT_FOUND_PAGE,
+    path: routeLink.SETTING,
+    component: Setting,
+    auth: true,
+    nav: false
+  },
+  {
+    path: routeLink.BANKCARD_LIST,
+    component: BankcardList,
+    auth: true,
+    nav: false
+  },
+  {
+    path: routeLink.ADD_BANKCARD,
+    component: AddBankcard,
+    auth: true,
+    nav: false
+  },
+  {
+    path: routeLink.NOT_FOUND,
     component: NotFound,
     auth: false,
     nav: false

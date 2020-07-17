@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
   wrapper: {
     height: '100vh',
     paddingTop: '30%',
-    color: theme.palette.common.black,
+    color: '#000',
     textAlign: 'center',
     '& img': {
       display: 'block',

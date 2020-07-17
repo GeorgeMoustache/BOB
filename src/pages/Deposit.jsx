@@ -255,7 +255,7 @@ const Deposit = () => {
     fetchApi.deposit(params).then(res => {
       if (res.data.code !== 0) return dispatch(toastMsg('error', '存款失敗'))
       dispatch(toastMsg('success', '存款成功'))
-      history.push(routes.MEMBER_PAGE)
+      history.push(routes.MEMBER)
     })
   }
 

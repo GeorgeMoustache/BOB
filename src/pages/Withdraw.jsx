@@ -256,7 +256,7 @@ const Withdraw = () => {
   const addBankCardComponent = () => {
     return (
       <div className={`${classes.addBankCard} ${classes.box}`}>
-        <Link to={routes.ADD_BANKCARD_PAGE}>添加银行卡</Link>
+        <Link to={routes.ADD_BANKCARD}>添加银行卡</Link>
       </div>
     )
   }
@@ -278,7 +278,7 @@ const Withdraw = () => {
             })
           }
         </ul>
-        <Link to={routes.ADD_BANKCARD_PAGE} className='add'>＋ 添加银行卡</Link>
+        <Link to={routes.ADD_BANKCARD} className='add'>＋ 添加银行卡</Link>
       </div>
     )
   }
@@ -302,10 +302,7 @@ const Withdraw = () => {
       setMoneyList(res.data.data.moneyList)
     })
     //獲取我的銀行列表
-    fetchApi.myBankList().then(res => {
-      console.log(res)
-      setMyBankList(res.data.data.bankList)
-    })
+    fetchApi.myBankList().then(res => setMyBankList(res.data.data.bankList))
   },[])
 
   return (

@@ -103,19 +103,19 @@ const Navigator = () => {
     return (
       <ul className={classes.container}>
         <li>
-          <NavLink to={RouterLink.PROMOTION_PAGE} activeClassName='active' className={`${classes.links} ${classes.link1}`}>優惠</NavLink>
+          <NavLink to={RouterLink.PROMOTION} activeClassName='active' className={`${classes.links} ${classes.link1}`}>優惠</NavLink>
         </li>
         <li>
-          <NavLink to={RouterLink.SUPPORT_PAGE} activeClassName='active' className={`${classes.links} ${classes.link2}`}>客服</NavLink>
+          <NavLink to={RouterLink.SUPPORT} activeClassName='active' className={`${classes.links} ${classes.link2}`}>客服</NavLink>
         </li>
         <li>
-          <NavLink exact to={RouterLink.HOME_PAGE} activeClassName='active' className={`${classes.links} ${classes.linkHome}`}>首頁</NavLink>
+          <NavLink exact to={RouterLink.HOME} activeClassName='active' className={`${classes.links} ${classes.linkHome}`}>首頁</NavLink>
         </li>
         <li>
-          <NavLink to={RouterLink.SPONSOR_PAGE} activeClassName='active' className={`${classes.links} ${classes.link3}`}>贊助</NavLink>
+          <NavLink to={RouterLink.SPONSOR} activeClassName='active' className={`${classes.links} ${classes.link3}`}>贊助</NavLink>
         </li>
         <li>
-          <NavLink to={RouterLink.MEMBER_PAGE} activeClassName='active' className={`${classes.links} ${classes.link4}`}>我的</NavLink>
+          <NavLink to={RouterLink.MEMBER} activeClassName='active' className={`${classes.links} ${classes.link4}`}>我的</NavLink>
         </li>
       </ul>
     )

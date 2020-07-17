@@ -98,7 +98,7 @@ const useStyles = makeStyles(theme => ({
     },
     '& .sub-title': {
       fontSize: '14px',
-      color: theme.palette.common.black,
+      color: '#000',
       textAlign: 'center'
     }
   },
@@ -323,7 +323,7 @@ const Joinus = () => {
                 </dd>
               </dl>
             </div>
-            <Link to={routes.JOINUS_FORM_PAGE} className='join-btn'>加入我们</Link>
+            <Link to={routes.JOINUS_FORM} className='join-btn'>加入我们</Link>
           </div>
           <div className={`${classes.section} ${classes.sec2}`}>
             <div className='main-title'>
