@@ -34,7 +34,7 @@ const Home = () => {
   const dispatch = useDispatch()
   const memberInfo = useSelector((state) => state.memberInfo)
   const [sliderList, setSliderList] = useState([])
-  const [marqueeContent, setMarqueeContent] = useState([])
+  const [marqueeContent, setMarqueeContent] = useState()
   const [loginStatus, setLoginStatus] = useState()
   const [gameList, setGameList] = useState([])
   const [dialogEnabled, setDialogEnabled] = useState(false)
@@ -61,7 +61,7 @@ const Home = () => {
     fetchApi.homeMarquee().then((data) => {
       setMarqueeContent(data.data.data.list)
     })
-
+    
     //取得遊戲列表
     fetchApi.homeGameList().then((data) => {
       const gameData = Object.values(data.data.data)

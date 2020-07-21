@@ -47,18 +47,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const MarqueeComponent = props => {
+const MarqueeComponent = (props) => {
   const classes = useStyles()
   const history = useHistory()
   const { marqueeContent } = props
   const [announcement, setAnnouncement] = useState({
     enabled: false,
     title: '',
-    content: ''
+    content: '',
   })
 
   //開啟彈窗
-  const openDialog = (item) => ()=> setAnnouncement({ enabled: true, title: item.title, content: item.content })
+  const openDialog = (item) => () => setAnnouncement({ enabled: true, title: item.title, content: item.content })
 
   //查看更多
   const handleConfirm = () => history.push(routes.ANNOUNCEMENT)
@@ -68,17 +68,17 @@ const MarqueeComponent = props => {
 
   return (
     <div className={classes.marquee}>
-      <Marquee speed={1}>
-        {
-          marqueeContent.map((item, idx) => {
+      {marqueeContent && (
+        <Marquee speed={1}>
+          {marqueeContent.map((item, idx) => {
             return (
               <button onClick={openDialog(item)} key={idx}>
                 {item.content}
               </button>
             )
-          })
-        }
-      </Marquee>
+          })}
+        </Marquee>
+      )}
       <AlertDialog
         dialogOpen={announcement.enabled}
         title={announcement.title}
